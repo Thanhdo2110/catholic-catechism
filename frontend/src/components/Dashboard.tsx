@@ -272,19 +272,19 @@ export function Dashboard({ onSelectTrack, currentLang }: DashboardProps) {
                   {"\n"}
                   <span className="text-slate-500">  "</span>
                   <span className="text-amber-700">totalQuizzes</span>
-                  <span className="text-slate-500">": </span>
+                  <span className="text-slate-500">: </span>
                   <span className="text-emerald-600 font-semibold">2,500+</span>
                   <span className="text-slate-500">,</span>
                   {"\n"}
                   <span className="text-slate-500">  "</span>
                   <span className="text-amber-700">lessons</span>
-                  <span className="text-slate-500">": </span>
+                  <span className="text-slate-500">: </span>
                   <span className="text-emerald-600 font-semibold">45</span>
                   <span className="text-slate-500">,</span>
                   {"\n"}
                   <span className="text-slate-500">  "</span>
                   <span className="text-amber-700">cccParagraphs</span>
-                  <span className="text-slate-500">": </span>
+                  <span className="text-slate-500">: </span>
                   <span className="text-emerald-600 font-semibold">2,865</span>
                   {"\n"}
                   <span className="text-slate-400">{"}"}</span>
@@ -374,33 +374,36 @@ export function Dashboard({ onSelectTrack, currentLang }: DashboardProps) {
                 </div>
                 <pre className="font-mono text-xs leading-6 text-slate-300 overflow-x-auto">
                   <span className="text-slate-500">$ </span>
-                  <span className="text-amber-300">kubectl</span> get review-schedule
+                  <span className="text-amber-300">kubectl</span> get
+                  review-schedule
                   {"\n\n"}
                   <span className="text-slate-500">NAME</span>
-                  <span className="text-slate-600">                    </span>
+                  <span className="text-slate-600">{"          "}</span>
                   <span className="text-slate-500">STATUS</span>
-                  <span className="text-slate-600">       </span>
+                  <span className="text-slate-600">{"       "}</span>
                   <span className="text-slate-500">DUE</span>
-                  <span className="text-slate-600">      </span>
+                  <span className="text-slate-600">{"      "}</span>
                   <span className="text-slate-500">CARDS</span>
                   {"\n"}
                   <span className="text-emerald-400">leitner-worker-ccc</span>
-                  <span className="text-slate-600">    </span>
+                  <span className="text-slate-600">{"    "}</span>
                   <span className="text-emerald-400">Active</span>
-                  <span className="text-slate-600">    </span>
+                  <span className="text-slate-600">{"    "}</span>
                   <span className="text-amber-300">2m ago</span>
-                  <span className="text-slate-600">    </span>
+                  <span className="text-slate-600">{"    "}</span>
                   <span className="text-white">247</span>
                   {"\n"}
                   <span className="text-sky-400">leitner-worker-marriage</span>
-                  <span className="text-slate-600"> </span>
+                  <span className="text-slate-600">{" "}</span>
                   <span className="text-emerald-400">Active</span>
-                  <span className="text-slate-600">    </span>
+                  <span className="text-slate-600">{"    "}</span>
                   <span className="text-amber-300">5m ago</span>
-                  <span className="text-slate-600">    </span>
+                  <span className="text-slate-600">{"    "}</span>
                   <span className="text-white">183</span>
                   {"\n\n"}
-                  <span className="text-slate-500">2 workers running. All schedules healthy.</span>
+                  <span className="text-slate-500">
+                    2 workers running. All schedules healthy.
+                  </span>
                   <span className="text-emerald-400"> ✓</span>
                 </pre>
               </div>
