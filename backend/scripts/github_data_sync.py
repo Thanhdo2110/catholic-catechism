@@ -9,7 +9,7 @@ from collections.abc import Iterable, Iterator, Sequence
 from dataclasses import dataclass
 from itertools import zip_longest
 from pathlib import Path
-from typing import Callable
+from typing import Callable    
 
 import aiohttp
 from sqlalchemy.exc import SQLAlchemyError
@@ -39,7 +39,7 @@ HTTP_HEADERS = {
 }
 MISSING_VERSE_PLACEHOLDERS = {
     "en": "[Verse not present in this translation]",
-    "vi": "[Câu này không có trong bản dịch này]",
+    "vi": "[Câu này không có trong bản dịch này !]",
 }
 
 CANONICAL_BIBLE_BOOKS: tuple[tuple[str, str, str], ...] = (
