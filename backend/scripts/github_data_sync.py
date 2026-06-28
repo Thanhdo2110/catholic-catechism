@@ -7,6 +7,7 @@ import logging
 import sys
 from collections.abc import Iterable, Iterator, Sequence
 from dataclasses import dataclass
+from itertools import zip_longest
 from pathlib import Path
 from typing import Callable
 
@@ -35,6 +36,10 @@ CCC_CATEGORY_SLUG = "ccc-paragraph-sync"
 HTTP_HEADERS = {
     "Accept": "application/json, text/plain;q=0.9, */*;q=0.8",
     "User-Agent": "CatholicCatechismDataSync/1.0",
+}
+MISSING_VERSE_PLACEHOLDERS = {
+    "en": "[Verse not present in this translation]",
+    "vi": "[Câu này không có trong bản dịch này]",
 }
 
 CANONICAL_BIBLE_BOOKS: tuple[tuple[str, str, str], ...] = (
@@ -432,19 +437,34 @@ def generate_bible_verse_seeds(
                     f"Bible chapter arrays invalid for {expected_abbrev} chapter {chapter_number}"
                 )
             if len(english_verses) != len(vietnamese_verses):
-                raise ValueError(
-                    f"Bible verse count mismatch for {expected_abbrev} chapter {chapter_number}: "
-                    f"en={len(english_verses)} vi={len(vietnamese_verses)}"
+                LOGGER.warning(
+                    "Bible verse count mismatch for %s chapter %s: en=%s vi=%s. "
+                    "Proceeding with zip_longest alignment.",
+                    expected_abbrev,
+                    chapter_number,
+                    len(english_verses),
+                    len(vietnamese_verses),
                 )
 
             for verse_number, (text_en, text_vi) in enumerate(
-                zip(english_verses, vietnamese_verses),
+                zip_longest(
+                    english_verses,
+                    vietnamese_verses,
+                    fillvalue="",
+                ),
                 start=1,
             ):
                 normalized_en = collapse_text(str(text_en))
                 normalized_vi = collapse_text(str(text_vi))
-                if not normalized_en or not normalized_vi:
+
+                if not normalized_en and not normalized_vi:
                     continue
+
+                if not normalized_en:
+                    normalized_en = MISSING_VERSE_PLACEHOLDERS["en"]
+                if not normalized_vi:
+                    normalized_vi = MISSING_VERSE_PLACEHOLDERS["vi"]
+
                 yield BibleVerseSeed(
                     canonical_book_number=canonical_number,
                     book_abbrev=expected_abbrev,
